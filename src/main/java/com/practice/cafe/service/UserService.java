@@ -43,7 +43,7 @@ public class UserService {
                 throw new ErrorException(ExceptionEnum.NOT_ADMIN_KEY);
             role = UserRole.ADMIN;
         }
-        User user = new User(email, password, name, address, phone, role);
+        User user =  User.signup(email, password, name, address, phone, role);
         userRepository.save(user);
         return ResponseEntity.ok(new UserStatusResponseDto(user.getName(), "회원가입을 성공했습니다."));
     }
