@@ -2,6 +2,7 @@ package com.practice.cafe.entity;
 
 import com.practice.cafe.dto.UserRole;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -34,6 +35,7 @@ public class User extends Timestamped{
     @Enumerated(value = EnumType.STRING)
     private UserRole role;
 
+    @Builder
     public User(String email, String password, String name, String address, String phone, UserRole role) {
         this.email = email;
         this.password = password;
@@ -41,5 +43,16 @@ public class User extends Timestamped{
         this.address = address;
         this.phone = phone;
         this.role = role;
+    }
+
+    public static User signup(String email, String password, String name, String address, String phone, UserRole role){
+        return User.builder()
+                .email(email)
+                .password(password)
+                .name(name)
+                .address(address)
+                .phone(phone)
+                .role(role)
+                .build();
     }
 }
