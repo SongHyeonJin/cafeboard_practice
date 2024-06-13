@@ -3,13 +3,12 @@ package com.practice.cafe.dto.request.user;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class SignUpRequestDto {
 
     @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "유효한 이메일 주소를 입력해주세요.")
@@ -35,4 +34,15 @@ public class SignUpRequestDto {
 
     private boolean admin = false;
     private String adminKey;
+
+    @Builder
+    private SignUpRequestDto(String email, String password, String name, String address, String phone, boolean admin, String adminKey){
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.admin = admin;
+        this.adminKey = adminKey;
+    }
 }
