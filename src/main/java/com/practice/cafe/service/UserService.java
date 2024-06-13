@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -45,7 +46,7 @@ public class UserService {
         }
         User user =  User.signup(email, password, name, address, phone, role);
         userRepository.save(user);
-        return ResponseEntity.ok(new UserStatusResponseDto(user.getName(), "회원가입을 성공했습니다."));
+        return ResponseEntity.ok(new UserStatusResponseDto(user.getName(), "회원가입을 성공했습니다.", LocalDateTime.now()));
     }
 
 }
